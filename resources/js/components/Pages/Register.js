@@ -4,45 +4,38 @@ import api from '../Api';
 import { useSelector } from 'react-redux'
 import { useForm } from "react-hook-form";
 
-import {Form, FormControl, FormGroup, FormLabel, FormText, FormCheck, Radio, Button} from 'react-bootstrap';
-
-import ModalNotif from '../Common/ModalNotif'
+import {Form, FormControl, FormGroup, FormLabel, FormText, FormCheck, Radio, Button, Spinner} from 'react-bootstrap';
 
 export default function Register () {
     
     const {register, handleSubmit} = useForm();
     
-    const [show, showNotif] = useState(false);
-    const [msg, setMsg] = useState(false);
+    const [loading, showLoading] = useState(false);
     
     const onSubmit = (data) => {
         
-//        showNotif(true);
-//        console.log(data)
         let url='register';
 
         if(data.password_confirmation !== data.password) {
             alert('Passwords do not match');
             return;
         }
+        
+        showLoading(true);
         api.post(url, data)
           .then((res) => {
-              setMsg('registration is successful. Please verify your email');
-              showNotif(true);
-              console.log(res);
+              alert('registration is successful. Please verify your email')
+              showLoading(false);
           })
           .catch((err) => {
-              
+                showLoading(false);
               if(err.response.status==422) {
-                  setMsg('The data has already been taken');
-                  showNotif(true);
-//                  alert('The data has already been taken')
+                  alert('The data has already been taken')
+
+              } else {
+                  alert('Error, please verify your form')
               }
               
-//              if(err.response.status==400) {
-//                  alert('nvalid Email or Password')
-//              }//invalid_credentials
-              console.log(err.response.status);
           });
           
     }
@@ -63,7 +56,7 @@ export default function Register () {
                       <h1>Register</h1>
 
                       <Form onSubmit={handleSubmit(onSubmit)}> 
-                            <FormGroup controlId="formBasicEmail">
+                            <FormGroup>
                               <FormLabel>Username</FormLabel>
                               <FormControl 
                                    type="text" 
@@ -73,7 +66,7 @@ export default function Register () {
                                    ref={register}
                                    />
                             </FormGroup>
-                            <FormGroup controlId="formBasicEmail">
+                            <FormGroup>
                               <FormLabel>Name</FormLabel>
                               <FormControl 
                                    type="text" 
@@ -83,7 +76,7 @@ export default function Register () {
                                    ref={register}
                                    />
                             </FormGroup>
-                            <FormGroup controlId="formBasicEmail">
+                            <FormGroup>
                               <FormLabel>Email address</FormLabel>
                               <FormControl 
                                    type="email" 
@@ -97,7 +90,7 @@ export default function Register () {
                               </FormText>
                             </FormGroup>
 
-                            <FormGroup controlId="formBasicPassword">
+                            <FormGroup>
                               <FormLabel>Password</FormLabel>
                               <FormControl 
                                   type="password" 
@@ -107,7 +100,7 @@ export default function Register () {
                                   ref={register}
                                   />
                             </FormGroup>
-                            <FormGroup controlId="formBasicPassword">
+                            <FormGroup>
                               <FormLabel>Password</FormLabel>
                               <FormControl 
                                   type="password" 
@@ -128,7 +121,7 @@ export default function Register () {
                                     />
 
                             </FormGroup>
-                            <FormGroup controlId="formBasicEmail">
+                            <FormGroup>
                               <FormLabel>Address</FormLabel>
                               <Form.Control 
                                     as="textarea" 
@@ -140,11 +133,22 @@ export default function Register () {
 
                             </FormGroup>
                             <Button variant="primary" type="submit">
-                              Submit
+                            Submit &nbsp;
+                            {
+                                loading && (
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                      />
+                                )
+                            }
+                              
                             </Button>
                           </Form>
                     </div>
-                  <ModalNotif show={show} message={msg} onHide={onHide}/>  
 
                 </main>
        

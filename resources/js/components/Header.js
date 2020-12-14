@@ -13,7 +13,7 @@ function Header() {
                     
                     <NavLink className="p-2 text-dark" to="/login">Login </NavLink>
                 </nav>
-                <a className="btn btn-outline-primary" href="/register">Sign up</a>
+                <a className="btn btn-outline-primary" href="/register">Register</a>
         </header>
         
     )

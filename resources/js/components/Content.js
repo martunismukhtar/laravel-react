@@ -50,7 +50,7 @@ function Content() {
                     <div className="row">
 
                         <PrivateRoute exact path="/my" component={My}></PrivateRoute>
-                        
+                        <PrivateRoute exact path="/verify/:id" component={VerifyEmail} />
                         <Route exact path="/" component={Home}></Route>
 
                         <Route exact path="/register"><Register /></Route>
@@ -84,7 +84,8 @@ function Content() {
                             <PrivateRoute exact path="/home" component={Dashboard}></PrivateRoute>
                             <PrivateRoute exact path="/my" component={My}></PrivateRoute>
                             <PrivateRoute exact path="/reset-pwd" component={sendEmailResetPwd} />
-
+                            <Route exact path="/verify/:id" component={VerifyEmail} />
+                            <Route exact path="/attemp-verify-email" component={InfoVerifyEmail} />
                             <PrivateRoute exact path="/reset-password-form/:str" component={resetPasswordForm} />
                             <PrivateRoute exact path="/logout"><Logout /></PrivateRoute>
                      </div>     
