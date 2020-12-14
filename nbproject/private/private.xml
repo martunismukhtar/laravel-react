@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/echo/www/laravel-react/app/Http/Controllers/CompanyController.php</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/Content.js</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/PrivateRoute.js</file>
+            <file>file:/home/echo/www/laravel-react/app/Notifications/ResetPassword.php</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/Pages/VerifyEmail.js</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/Pages/Carddata.js</file>
+            <file>file:/home/echo/www/laravel-react/routes/api.php</file>
+            <file>file:/home/echo/www/laravel-react/app/Models/Company.php</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/Pages/Dashboard.js</file>
+            <file>file:/home/echo/www/laravel-react/app/Models/User.php</file>
+            <file>file:/home/echo/www/laravel-react/resources/js/components/Api.js</file>
+        </group>
+    </open-files>
+</project-private>
