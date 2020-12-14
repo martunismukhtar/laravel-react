@@ -1,6 +1,6 @@
 import React, {useEffect, useState }  from 'react';
 import ReactDOM from 'react-dom';
-import useAsyncEffect from "use-async-effect";
+
 import api from '../Api';
 
 import { useSelector, useDispatch } from 'react-redux';
