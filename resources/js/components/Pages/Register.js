@@ -101,7 +101,7 @@ export default function Register () {
                                   />
                             </FormGroup>
                             <FormGroup>
-                              <FormLabel>Password</FormLabel>
+                              <FormLabel>Password Confirmation</FormLabel>
                               <FormControl 
                                   type="password" 
                                   name="password_confirmation"
