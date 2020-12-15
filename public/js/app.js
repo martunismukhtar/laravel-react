@@ -90787,6 +90787,11 @@ var NoMatchPage = function NoMatchPage() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "404 - Not found");
 };
 
+var Page404 = function Page404(_ref) {
+  var location = _ref.location;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No match found for ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, location.pathname)));
+};
+
 function Content() {
   var getuser = Object(react_redux__WEBPACK_IMPORTED_MODULE_17__["useSelector"])(function (state) {
     return state;
@@ -90795,7 +90800,7 @@ function Content() {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
-  }, getuser.isAuthenticated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Sidebar__WEBPACK_IMPORTED_MODULE_11__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }, getuser.isAuthenticated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Sidebar__WEBPACK_IMPORTED_MODULE_11__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
     component: _Pages_Home__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -90840,8 +90845,8 @@ function Content() {
     path: "/logout",
     component: _components_Pages_Logout__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    component: NoMatchPage
-  }))));
+    component: _Pages_NotFound__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Content);

@@ -40,6 +40,12 @@ const NoMatchPage = () => {
   );
 };
 
+const Page404 = ({ location }) => (
+   <div>
+      <h2>No match found for <code>{location.pathname}</code></h2>
+   </div>
+);
+
 function Content() {
     
     let getuser = useSelector(state => state);
@@ -52,23 +58,25 @@ function Content() {
                             getuser.isAuthenticated && (<Sidebar />)
                         }
                         
-                        <Route exact path="/" component={Home}></Route>
-                        <Route exact path="/login" render={()=>
-                            getuser.isAuthenticated ? <Redirect to="/login" />: <Login />
-                        }></Route>
-                        
-                        <Route exact path="/register" component={Register}></Route>
-                        <PrivateRoute exact path="/home" component={Dashboard}></PrivateRoute>
-                        <PrivateRoute exact path="/my" component={My}></PrivateRoute>
-                        <PrivateRoute exact path="/reset-pwd" component={sendEmailResetPwd}></PrivateRoute>
-                        
-                        <PrivateRoute exact path="/verify/:id" component={VerifyEmail}></PrivateRoute>
-                        
-                        <Route exact path="/attemp-verify-email" component={InfoVerifyEmail}></Route>
-                        
-                        <PrivateRoute exact path="/reset-password-form/:str" component={resetPasswordForm}></PrivateRoute>
-                        <PrivateRoute exact path="/logout" component={Logout}></PrivateRoute>
-                        <Route  component={NoMatchPage}></Route>
+                        <Switch>
+                            <Route exact path="/" component={Home}></Route>
+                            <Route exact path="/login" render={()=>
+                                getuser.isAuthenticated ? <Redirect to="/login" />: <Login />
+                            }></Route>
+
+                            <Route exact path="/register" component={Register}></Route>
+                            <PrivateRoute exact path="/home" component={Dashboard}></PrivateRoute>
+                            <PrivateRoute exact path="/my" component={My}></PrivateRoute>
+                            <PrivateRoute exact path="/reset-pwd" component={sendEmailResetPwd}></PrivateRoute>
+
+                            <PrivateRoute exact path="/verify/:id" component={VerifyEmail}></PrivateRoute>
+
+                            <Route exact path="/attemp-verify-email" component={InfoVerifyEmail}></Route>
+
+                            <PrivateRoute exact path="/reset-password-form/:str" component={resetPasswordForm}></PrivateRoute>
+                            <PrivateRoute exact path="/logout" component={Logout}></PrivateRoute>
+                            <Route component={NotFound} />    
+                        </Switch>
                      </div>     
                  </div>
             </div>
