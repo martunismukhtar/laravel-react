@@ -29,7 +29,7 @@ function Dashboard () {
         
         api.post(`company`, {search:search})
             .then((res) => {
-                console.log(res.data)
+             
                 setPost(res.data)
                 setLoading(false)
             })
@@ -42,13 +42,7 @@ function Dashboard () {
                 getCompany();
                 
             }).catch((err) => {
-//              if(err.response.status==400) {
-//                  alert('invalid Email or Password')
-//              }
-//              else if(err.response.status==401) {
-//                  alert('Unauthorized')
-//              }
-              console.log(err);
+
           });
     }
     return(

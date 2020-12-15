@@ -33,7 +33,6 @@ export default function VerifyEmail(props) {
         
         api.get(url)
           .then((res) => {
-//              console.log(res.data)
               dispatch(SetUSER({
                    user:res.data, auth:true
               }));

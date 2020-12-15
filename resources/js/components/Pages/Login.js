@@ -40,10 +40,9 @@ function Login () {
                  history.push('/attemp-verify-email');
               } else {
                   history.push('/home');
-//                  window.location.href = "/";
+
               }
-//              console.log(res);
-//              window.location.href = "/";
+
           })
           .catch((err) => {
               if(err.response.status==400) {
@@ -52,7 +51,7 @@ function Login () {
               else if(err.response.status==401) {
                   alert('Unauthorized')
               }
-              console.log(err.response.status);
+              
           });
           
     }

@@ -18,7 +18,6 @@ function Home () {
     const [post, setPost] = useState({})
     
     useEffect(() => {
-//        console.log(getuser)
         getCompany();
         
     }, [])

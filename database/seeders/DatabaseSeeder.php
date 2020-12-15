@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Martunis',
-            'email' => 'martunismukhtar@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@example.com',
             'password' => Hash::make('12345'),
         ]);
         
@@ -40,6 +40,24 @@ class DatabaseSeeder extends Seeder
         
         DB::table('company')->insert([
             'name' => 'Twittwer',
+            'address' => 'xxxx xxxxxxxxxxx xxx xxxxxxxxxxxxxxxxxx xxx xxxxxxxxxxxx xx',
+            'phone_number' => '887899899',
+        ]);
+        
+        DB::table('company')->insert([
+            'name' => 'AAA AAa',
+            'address' => 'xxxx xxxxxxxxxxx xxx xxxxxxxxxxxxxxxxxx xxx xxxxxxxxxxxx xx',
+            'phone_number' => '887899899',
+        ]);
+        
+        DB::table('company')->insert([
+            'name' => 'BBBBBBBBBBB',
+            'address' => 'xxxx xxxxxxxxxxx xxx xxxxxxxxxxxxxxxxxx xxx xxxxxxxxxxxx xx',
+            'phone_number' => '887899899',
+        ]);
+        
+        DB::table('company')->insert([
+            'name' => 'CCCCC',
             'address' => 'xxxx xxxxxxxxxxx xxx xxxxxxxxxxxxxxxxxx xxx xxxxxxxxxxxx xx',
             'phone_number' => '887899899',
         ]);

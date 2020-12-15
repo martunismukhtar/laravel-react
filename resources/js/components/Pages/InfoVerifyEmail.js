@@ -1,9 +1,6 @@
-import React, {useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
 export default function InfoVerifyEmail() {
-    let getuser = useSelector(state => state);
-
     
     return (
         <main role="main" className="container col-md-10 div-form-xy">

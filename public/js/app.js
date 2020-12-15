@@ -91011,7 +91011,6 @@ function Dashboard() {
     _Api__WEBPACK_IMPORTED_MODULE_2__["default"].post("company", {
       search: search
     }).then(function (res) {
-      console.log(res.data);
       setPost(res.data);
       setLoading(false);
     });
@@ -91023,15 +91022,7 @@ function Dashboard() {
       userid: getuser.user.id
     }).then(function (res) {
       getCompany();
-    })["catch"](function (err) {
-      //              if(err.response.status==400) {
-      //                  alert('invalid Email or Password')
-      //              }
-      //              else if(err.response.status==401) {
-      //                  alert('Unauthorized')
-      //              }
-      console.log(err);
-    });
+    })["catch"](function (err) {});
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
@@ -91150,7 +91141,6 @@ function Home() {
       setPost = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    //        console.log(getuser)
     getCompany();
   }, []);
 
@@ -91215,13 +91205,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InfoVerifyEmail; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
 
 function InfoVerifyEmail() {
-  var getuser = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state;
-  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     role: "main",
     className: "container col-md-10 div-form-xy"
@@ -91311,10 +91296,8 @@ function Login() {
       if (!res.user.email_verified_at || res.user.email_verified_at === null) {
         history.push('/attemp-verify-email');
       } else {
-        history.push('/home'); //                  window.location.href = "/";
-      } //              console.log(res);
-      //              window.location.href = "/";
-
+        history.push('/home');
+      }
     })["catch"](function (err) {
       if (err.response.status == 400) {
         alert('invalid Email or Password');
@@ -91322,8 +91305,6 @@ function Login() {
       else if (err.response.status == 401) {
           alert('Unauthorized');
         }
-
-      console.log(err.response.status);
     });
   }
 
@@ -91419,16 +91400,12 @@ function Logout() {
       dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["ResetUSER"])());
       window.location.href = "/";
     })["catch"](function (err) {
-      console.log(err);
-
       if (err.response.status == 400) {
         alert('invalid Email or Password');
       } else if (err.response.status == 401) {
         alert('Unauthorized');
       } //invalid_credentials
 
-
-      console.log(err.response.status);
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
@@ -91512,7 +91489,6 @@ function My() {
       search: search,
       userid: getuser.user.id
     }).then(function (res) {
-      console.log(res.data);
       setPost(res.data);
       setLoading(false);
     });
@@ -91522,26 +91498,17 @@ function My() {
     var r = confirm("Delete this data?");
 
     if (r == true) {
-      //          txt = "You pressed OK!";
       setLoading(true);
       _Api__WEBPACK_IMPORTED_MODULE_2__["default"].post("removefavorite", {
         id: dt,
         userid: getuser.user.id
       }).then(function (res) {
-        console.log(res.data);
-        setPost(res.data);
         setLoading(false);
+        getCompany();
       })["catch"](function (err) {
-        //              if(err.response.status==400) {
-        //                  alert('invalid Email or Password')
-        //              }
-        //              else if(err.response.status==401) {
-        //                  alert('Unauthorized')
-        //              }
-        console.log(err);
+        alert('Unauthorized');
       });
-    } //        console.log(getuser.user.id)
-
+    }
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
@@ -91838,7 +91805,6 @@ function VerifyEmail(props) {
     }
 
     _Api__WEBPACK_IMPORTED_MODULE_1__["default"].get(url).then(function (res) {
-      //              console.log(res.data)
       dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_2__["SetUSER"])({
         user: res.data,
         auth: true

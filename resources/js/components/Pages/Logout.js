@@ -25,14 +25,13 @@ function Logout () {
               
           })
           .catch((err) => {
-              console.log(err)
-      
+              
               if(err.response.status==400) {
                   alert('invalid Email or Password')
               } else if (err.response.status==401) {
                   alert('Unauthorized')
               }//invalid_credentials
-              console.log(err.response.status);
+              
           });
           
     });

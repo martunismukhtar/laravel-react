@@ -29,7 +29,7 @@ export default function My () {
         
         api.post(`mycompany`, {search:search, userid:getuser.user.id})
             .then((res) => {
-                console.log(res.data)
+
                 setPost(res.data)
                 setLoading(false)
             })
@@ -39,27 +39,20 @@ export default function My () {
         
         var r = confirm("Delete this data?");
         if (r == true) {
-//          txt = "You pressed OK!";
+
             setLoading(true);
             api.post(`removefavorite`, {id:dt, userid:getuser.user.id})
             .then((res) => {
-                console.log(res.data)
-                setPost(res.data)
-                setLoading(false)
                 
+                setLoading(false)
+
+                getCompany();
             }).catch((err) => {
-//              if(err.response.status==400) {
-//                  alert('invalid Email or Password')
-//              }
-//              else if(err.response.status==401) {
-//                  alert('Unauthorized')
-//              }
-              console.log(err);
+                alert('Unauthorized');
+
           });
         } 
 
-//        console.log(getuser.user.id)
-        
     }
     return(
         
