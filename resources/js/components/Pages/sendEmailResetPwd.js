@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import api from '../Api';
 
-import {Form, FormControl, FormGroup, FormLabel, FormText, FormCheck, Radio, Button, Spinner} from 'react-bootstrap';
+import {Form, FormControl, FormGroup, FormLabel, FormText, Button, Spinner} from 'react-bootstrap';
 
 export default function sendEmailResetPwd() {
     const [email, setEmail] = useState();

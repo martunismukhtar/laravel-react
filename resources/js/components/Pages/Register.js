@@ -4,7 +4,7 @@ import api from '../Api';
 import { useSelector } from 'react-redux'
 import { useForm } from "react-hook-form";
 
-import {Form, FormControl, FormGroup, FormLabel, FormText, FormCheck, Radio, Button, Spinner} from 'react-bootstrap';
+import {Form, FormControl, FormGroup, FormLabel, FormText, Button, Spinner} from 'react-bootstrap';
 
 export default function Register () {
     

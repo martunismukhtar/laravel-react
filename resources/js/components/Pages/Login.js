@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import {SetUSER} from '../redux/actions';
 import { useHistory } from 'react-router-dom'
 
-import {Form, FormControl, FormGroup, FormLabel, FormText, FormCheck, Radio, Button} from 'react-bootstrap';
+import {Form, FormControl, FormGroup, FormLabel, FormText, Button} from 'react-bootstrap';
 
 function Login () {
     let dispatch = useDispatch();
