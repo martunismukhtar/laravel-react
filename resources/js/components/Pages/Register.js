@@ -17,17 +17,23 @@ export default function Register () {
         let url='register';
 
         if(data.password_confirmation !== data.password) {
-            alert('Passwords do not match');
+            alert('Passwords does not match');
+            return;
+        }
+        
+        if(data.password.length<8) {
+            alert('The password must be at least 8 characters');
             return;
         }
         
         showLoading(true);
         api.post(url, data)
           .then((res) => {
-              alert('registration is successful. Please verify your email')
+              alert(res.message);
               showLoading(false);
           })
           .catch((err) => {
+
                 showLoading(false);
               if(err.response.status==422) {
                   alert('The data has already been taken')
@@ -40,18 +46,9 @@ export default function Register () {
           
     }
     
-    const change=() =>{
-        setMsg('registration is successful. Please login');
-        showNotif(true);
-    }
-    
-    const onHide=() =>{
-        showNotif(false);
-    }
-    
     return(
            
-        <main role="main" className="container">
+        <main role="main" className="container col-md-4 div-form-xy">
                     <div className="jumbotron">
                       <h1>Register</h1>
 
@@ -155,5 +152,3 @@ export default function Register () {
         
     )
 }
-
-//export default Register;

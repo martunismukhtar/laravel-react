@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
-import ModalNotif from '../Common/ModalNotif'
+
 import api from '../Api';
-import {ResetUSER} from '../redux/actions';
+import {SetUSER} from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
@@ -25,56 +25,37 @@ export default function VerifyEmail(props) {
         
         let url='verify/'+ userId + queryParams;
         
-        
         if(!getuser.isAuthenticated) {
             
-            setMsg('Pleas login');
-            showNotif(true);
-            setSuccessUrl('/login');
+            alert('Please login');
+            history.push('/login');
         }
         
         api.get(url)
           .then((res) => {
-              
-              setMsg(res.message);
-              showNotif(true);
-              
+//              console.log(res.data)
               dispatch(SetUSER({
                    user:res.data, auth:true
               }));
-              
-              setSuccessUrl('/');
-              console.log(res.message)
+              alert(res.message);
+              history.push('/home');
+
           })
           .catch((err) => {
               
-              setMsg(err.response.data.message);
-              showNotif(true);
+              alert(err.response.data.message);
               
-//              alert(err.response.data.message)
-      
-              if(err.response.status==400) {
-//                  alert('nvalid Email or Password')
-              }//invalid_credentials
-              console.log(err.response);
           });
-//          
-          
-//        console.log(queryParams)
+
     }, []);
-    
-    const onHide=() =>{
-        showNotif(false);
-        history.push(url);
-    }
-    
+     
     return (
         <div>
             <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>
             <span className="loading-text">Loading...</span>
-            <ModalNotif show={show} message={msg} onHide={onHide}/>  
+            
         </div>
     )
 }

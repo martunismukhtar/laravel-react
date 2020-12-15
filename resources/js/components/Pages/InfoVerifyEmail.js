@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function InfoVerifyEmail() {
-        
+    let getuser = useSelector(state => state);
+
+    
     return (
-        <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <main role="main" className="container col-md-10 div-form-xy">
             <div className="jumbotron">
                 <h1>Verify Email</h1>
                 <p className="lead">Please verify your email</p>

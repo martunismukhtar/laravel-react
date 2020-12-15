@@ -2,10 +2,27 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Support\Facades\Auth;
+//use App\Http\Controllers\Controller;
+//use Illuminate\Support\Facades\Validator;
+
+//use Illuminate\Support\Facades\Hash;
+//use App\Models\User;
+//use JWTAuth;
+//use Illuminate\Foundation\Auth\VerifiesEmails;
+//use Illuminate\Auth\Events\Verified;
+//
+//use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+//use Illuminate\Foundation\Auth\ResetsPasswords;
+//use Illuminate\Support\Facades\Password;
+//use App\Notifications\ResetPassword;
+//use Illuminate\Support\Str;
+
 use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller {
+    
     
     function index(Request $request){
         
@@ -22,8 +39,18 @@ class CompanyController extends Controller {
     
     
     function mycompany (Request $request) {
+        
+        $validatedData = $request->validate ([
+            'userid' => 'required|integer',
+            'search' => 'nullable|string'
+        ]);
+        
         $search = $request->search;
         $userid = $request->userid;
+        
+        if(empty($userid)) {
+            return response()->json(['status'=>'error', 'message' => 'error']);
+        }
         
         if(!empty($search)) {
             
@@ -54,16 +81,23 @@ class CompanyController extends Controller {
     }
     
     function addfavorite(Request $request) {
+        
+        $validatedData = $request->validate ([
+            'userid' => 'required|integer',
+            'id' => 'required|integer'
+        ]);
+        
         $userid = $request->userid;
+        $compoanyid = $request->id;
         
         $company = Company::find($request->id);
 
-        $hasPivot = Company::whereHas('user', function ($q) use ($userid) {
-            $q->where('company_user.user_id', $userid);
+        $hasPivot = Company::whereHas('user', function ($q) use ($userid, $compoanyid) {
+            $q->where('company_user.user_id', $userid)->where('company_user.company_id', $compoanyid);
         })
         ->exists();
         
-        if($hasPivot) {
+        if(!$hasPivot) {
             $company->user()->attach($request->userid);
         }
         
@@ -73,6 +107,11 @@ class CompanyController extends Controller {
     }
     
     function removefavorite(Request $request) {
+        
+        $validatedData = $request->validate ([
+            'id' => 'required|integer'
+        ]);
+        
         $company = Company::find($request->id);
 
         $company->user()->detach($request->userid);

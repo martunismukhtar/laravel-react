@@ -53,7 +53,6 @@ class AuthController extends Controller {
 
     }
 
-    
     public function resend(Request $request) {
         $validatedData = $this->validate($request, [
             'email' => 'required|email'
@@ -110,11 +109,11 @@ class AuthController extends Controller {
             'email' => [
                 'required',
                 'email',
-                'unique:users',
+//                'unique:users',
             ],
             'username' => [
                 'required',
-                'unique:users',
+//                'unique:users',
             ],
             'password' => [
                 'required',
@@ -125,6 +124,17 @@ class AuthController extends Controller {
             'phone_number' => 'required|string',
             'address' => 'required|string',
         ]);
+        
+        $cekusername = User::where('username', $validatedData['username'])->first();
+        
+        if(!empty($cekusername)) {
+            return response()->json(['status'=>'error', 'message' => 'The username has already been taken']);
+        }
+        
+        $cekemail = User::where('email', $validatedData['email'])->first();
+        if(!empty($cekemail)) {
+            return response()->json(['status'=>'error', 'message' => 'The email has already been taken']);
+        }
         
         $userData = [
             'email' => $request->email,
@@ -188,7 +198,8 @@ class AuthController extends Controller {
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => auth()->user(),
+            'message' => 'Registration is successful. Please verify your email'
         ]);
     }
     

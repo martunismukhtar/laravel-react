@@ -18,12 +18,7 @@ function Home () {
     const [post, setPost] = useState({})
     
     useEffect(() => {
-        
-        if(getuser.isAuthenticated) {
-            console.log(getuser.isAuthenticated)
-//            window.location.href = "/home";
-        }
-        
+//        console.log(getuser)
         getCompany();
         
     }, [])
@@ -39,7 +34,8 @@ function Home () {
     }
    
     return(
-        <main className="container">
+            
+        <main role="main" className="px-3 py-3 pt-md-5 pb-md-12 mx-auto col-9">
             <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
               <h5 className="display-5">List of Company</h5>
               

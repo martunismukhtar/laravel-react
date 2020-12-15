@@ -9,14 +9,11 @@ import {
 } from "react-router-dom";
 
 import Header from './Header';
-import Footer from './Footer';
 
 import Login from "./Pages/Login";
 
 import Register from "./Pages/Register";
 
-import Produk from "./Pages/Produk";
-import hasilRedux from "./Pages/hasilRedux";
 import InfoVerifyEmail from "./Pages/InfoVerifyEmail";
 
 
@@ -25,76 +22,59 @@ import NotFound from "./Pages/NotFound";
 import VerifyEmail from "./Pages/VerifyEmail";
 
 import PrivateRoute from './PrivateRoute';
-import NormalRoute from './NormalRoute';
 
-import Headerauth from '../components/Pages/authpage/Header';
-import Sidebar from '../components/Pages/authpage/Sidebar';
-import Dashboard from "../components/Pages/authpage/Dashboard";
-import My from "../components/Pages/authpage/My";
-import Logout from "../components/Pages/authpage/Logout";
-import sendEmailResetPwd from '../components/Pages/authpage/sendEmailResetPwd'
-import resetPasswordForm from '../components/Pages/authpage/resetPasswordForm';
+import Sidebar from '../components/Sidebar';
+
+import Dashboard from "../components/Pages/Dashboard";
+import My from "../components/Pages/My";
+
+import Logout from "../components/Pages/Logout";
+import sendEmailResetPwd from '../components/Pages/sendEmailResetPwd'
+import resetPasswordForm from '../components/Pages/resetPasswordForm';
 
 import { useSelector } from 'react-redux';
+
+const NoMatchPage = () => {
+  return (
+    <h3>404 - Not found</h3>
+  );
+};
 
 function Content() {
     
     let getuser = useSelector(state => state);
-    
-    if(!getuser.isAuthenticated) {
-        
-        return (
+    return (
             <div>
-              <Header />
-                <div className="container-fluid">
-                    <div className="row">
-
-                        <PrivateRoute exact path="/my" component={My}></PrivateRoute>
-                        <PrivateRoute exact path="/verify/:id" component={VerifyEmail} />
-                        <Route exact path="/" component={Home}></Route>
-
-                        <Route exact path="/register"><Register /></Route>
-
-                        <Route exact path="/login" render={()=>
-                            getuser.isAuthenticated ? <Redirect to="/home" />: <Login />
-                        }></Route>
-
-                    </div>
-                </div>
-
-            </div>
-          );
-  
-    } else {
-        
-        return (
-            <div>
-                <Headerauth />
+                <Header />
                 <div className="container-fluid">
                      <div className="row">
-                        <Sidebar />
-                            <Route exact path="/" render={()=>
-                                <Redirect to="/home" />
-                            }></Route>
-                            
-                            <Route exact path="/login" render={()=>
-                                getuser.isAuthenticated ? <Redirect to="/home" />: <Login />
-                            }></Route>
-                            
-                            <PrivateRoute exact path="/home" component={Dashboard}></PrivateRoute>
-                            <PrivateRoute exact path="/my" component={My}></PrivateRoute>
-                            <PrivateRoute exact path="/reset-pwd" component={sendEmailResetPwd} />
-                            <Route exact path="/verify/:id" component={VerifyEmail} />
-                            <Route exact path="/attemp-verify-email" component={InfoVerifyEmail} />
-                            <PrivateRoute exact path="/reset-password-form/:str" component={resetPasswordForm} />
-                            <PrivateRoute exact path="/logout"><Logout /></PrivateRoute>
+                        {
+                            getuser.isAuthenticated && (<Sidebar />)
+                        }
+                        
+                        <Route exact path="/" component={Home}></Route>
+                        <Route exact path="/login" render={()=>
+                            getuser.isAuthenticated ? <Redirect to="/login" />: <Login />
+                        }></Route>
+                        
+                        <Route exact path="/register" component={Register}></Route>
+                        <PrivateRoute exact path="/home" component={Dashboard}></PrivateRoute>
+                        <PrivateRoute exact path="/my" component={My}></PrivateRoute>
+                        <PrivateRoute exact path="/reset-pwd" component={sendEmailResetPwd}></PrivateRoute>
+                        
+                        <PrivateRoute exact path="/verify/:id" component={VerifyEmail}></PrivateRoute>
+                        
+                        <Route exact path="/attemp-verify-email" component={InfoVerifyEmail}></Route>
+                        
+                        <PrivateRoute exact path="/reset-password-form/:str" component={resetPasswordForm}></PrivateRoute>
+                        <PrivateRoute exact path="/logout" component={Logout}></PrivateRoute>
+                        <Route  component={NoMatchPage}></Route>
                      </div>     
                  </div>
             </div>
                 
             
         )
-    }
     
 }
 

@@ -58,7 +58,7 @@ function Login () {
     }
     
     return(
-        <main role="main" className="container col-md-4">
+        <main role="main" className="container col-md-4 div-form-xy">
             <div className="jumbotron">
               <h1>Login</h1>
               
