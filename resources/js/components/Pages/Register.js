@@ -33,8 +33,13 @@ export default function Register () {
               showLoading(false);
           })
           .catch((err) => {
-
+  
                 showLoading(false);
+                                
+              if(err.response.status==500) {
+                  alert('Server error, Please check your connection or email configuration')
+
+              } else  
               if(err.response.status==422) {
                   alert('The data has already been taken')
 
